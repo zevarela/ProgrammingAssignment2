@@ -8,10 +8,14 @@
 makeCacheMatrix <- function(x = matrix()) {
   inverse <- NULL
   set <- function(new.matrix) {
-    if (new.matrix!=x) # only update the matrix when needed
+    if (!identical(new.matrix,x)) # only update and re-invert if it is indeed a different matrix
     {
       x <<- new.matrix
       inverse <<- NULL
+    }
+    else
+    {
+      message("Setting of same data detected: Nothing was changed.")
     }
   }
   get <- function() x
